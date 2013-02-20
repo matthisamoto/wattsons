@@ -7,8 +7,16 @@
 	$_AnimationEasing = 'easeInOutSine';
 	$_AnimationStatus = 'idle';
 	$_CurrentSlide = 0;
+	$_Tab = $('#tab');
+	$_Toolbar = $('#toolbar');
 	
 	var slides = $_Container.children().length - 1;
+	
+	
+	/*
+	 * Global Functionality
+	 * ==================================
+	 */
 	
 	var resizeAll = function(e)
 	{
@@ -25,9 +33,15 @@
 		});
 	}
 	
+	/*
+	 * Slide Movements
+	 * ==================================
+	 */
+	
 	var advanceSlide = function(e)
 	{
 		var c = e.keyCode;
+		console.log(c)
 	  if ( c == 37 || c == 38)
 		{
 			moveSlide('aft');
@@ -78,10 +92,52 @@
 			});
 		}
 		
+		if( $_Toolbar.hasClass('open') ) toggleToolbar(null);
 	}
 	
-	$_Window.smartresize( resizeAll ).keyup( advanceSlide );
 	
+	/*
+	 * Toolbar
+	 * ==================================
+	 */
+	
+	var toggleToolbar = function(e)
+	{
+		if( $_Toolbar.hasClass('open') )
+		{
+			$_Toolbar.removeClass('open').find('#tab .label').html('More');;
+			$_Toolbar.animate({
+				bottom: -$_Toolbar.height() + 'px'
+			},
+			200,
+			$_AnimationEasing,
+			function(e) {
+				
+			});
+		}
+		else
+		{
+			$_Toolbar.addClass('open').find('#tab .label').html('Less');
+			$_Toolbar.animate({
+				bottom: 0
+			},
+			200,
+			$_AnimationEasing,
+			function(e) {
+			});
+		}
+	}
+	
+	
+	
+	/*
+	 * Initials
+	 * ==================================
+	 */
+	
+	$_Window.smartresize( resizeAll ).keyup( advanceSlide );
 	resizeAll(null);
+	
+	$_Tab.bind({ click: toggleToolbar });
 	
 }(jQuery));
