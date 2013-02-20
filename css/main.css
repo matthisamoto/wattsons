@@ -116,6 +116,8 @@ html, body {
 .green { background-color: #1fc370; }
 .blue { background-color: #009fdb; }
 
+.slide h1 { font-family: 'Cabin Condensed', Helvetica, Arial, sans-serif }
+.slide h2, .slide h3 { font-family: 'Signika', Helvetica, Arial, sans-serif }
 
 
 
