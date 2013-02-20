@@ -9,9 +9,10 @@
 	$_CurrentSlide = 0;
 	$_Tab = $('#tab');
 	$_Toolbar = $('#toolbar');
+	$_ArrowLeft = $('#left');
+	$_ArrowRight = $('#right');
 	
 	var slides = $_Container.children().length - 1;
-	
 	
 	/*
 	 * Global Functionality
@@ -38,7 +39,7 @@
 	 * ==================================
 	 */
 	
-	var advanceSlide = function(e)
+	var advanceSlideWithKey = function(e)
 	{
 		var c = e.keyCode;
 		console.log(c)
@@ -47,6 +48,20 @@
 			moveSlide('aft');
 		}
 		else if (c == 39 || c == 40)
+		{
+			moveSlide('fore')
+		}
+		
+	  e.preventDefault();
+	}
+	
+	var advanceSlideWithMouse = function(e)
+	{
+	  if ( e.currentTarget.id == "left" )
+		{
+			moveSlide('aft');
+		}
+		else if ( e.currentTarget.id == "right" )
 		{
 			moveSlide('fore')
 		}
@@ -135,7 +150,9 @@
 	 * ==================================
 	 */
 	
-	$_Window.smartresize( resizeAll ).keyup( advanceSlide );
+	$_ArrowLeft.bind({ click: advanceSlideWithMouse });
+	$_ArrowRight.bind({ click: advanceSlideWithMouse });
+	$_Window.smartresize( resizeAll ).keyup( advanceSlideWithKey );
 	resizeAll(null);
 	
 	$_Tab.bind({ click: toggleToolbar });
