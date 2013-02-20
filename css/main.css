@@ -108,22 +108,32 @@ h1, h2, h3, h4 {
 	margin: 0;
 	padding: 0;	
 	color: rgba(0,0,0,0.6);
+	font-family: 'Signika', Helvetica, Arial, sans-serif;
+	text-rendering: optimizeLegibility;
 }
 h1 { 
-	font-size: 2em; /* 32px */
+	font-size: 2.5em; /* 32px */	
+	font-weight: 600;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-family: 'Cabin Condensed', Helvetica, Arial, sans-serif;
+	margin-bottom: 1em;
 }
 h2 {
 	font-size: 3.125em; /* 50px */
-	color: #fff;
+	font-weight: 300;
 }
 h3 {
 	font-size: 2.5em; /* 40px */
-	font-weight: 400;
 	margin-bottom: .5em;
+	font-weight: 400;
 }
 h4 {
 	font-size: 1.5em; /* 24px */
+	font-weight: 400;
 }
+strong { font-weight: 600; }
 ul { margin: 0; padding: 0; list-style: none; }
 li { margin: 0; }
 
@@ -144,16 +154,12 @@ li { margin: 0; }
 	margin: 0 auto;
 	padding: 30px;
 	text-align: left;
-	background-color: rgba(0,0,0,0.2); /* FOR REFERENCE ONLY -- DELETE */
 }
 
 .red { background-color: #df4931; }
 .yellow { background-color: #ecb937; }
 .green { background-color: #1fc370; }
 .blue { background-color: #009fdb; }
-
-.slide h1 { font-family: 'Cabin Condensed', Helvetica, Arial, sans-serif }
-.slide h2, .slide h3 { font-family: 'Signika', Helvetica, Arial, sans-serif }
 
 .authors {
 	margin-left: 140px;
