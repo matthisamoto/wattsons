@@ -164,6 +164,9 @@ img { max-width: 60%; }
 }
 #left:hover, #right:hover {	opacity: .3; }
 
+.touch .navigation {
+	display: none;
+}
 
 #hashtag {
 	position: absolute;
@@ -437,8 +440,6 @@ input[type=submit]:active {
 
 @media only screen and (max-width: 960px) {
 	
-	
-	
 	/*
 	h1 { 
 		font-size: 1.75em;
@@ -463,7 +464,12 @@ input[type=submit]:active {
 	h4 {
 		font-size: 1em;
 	}
-	
+	#toolbar {
+		font-size: 0.75em;
+	}
+	#hashtag {
+		padding: 20px;
+	}
 	.authors,
 	.thanks {
 		margin-left: 14.5%;
@@ -471,8 +477,13 @@ input[type=submit]:active {
 }
 
 @media only screen and (max-width: 480px) {
+	
 	h4 {
 		font-size: 0.625em;
+	}
+	
+	#hashtag {
+		padding: 10px;
 	}
 }
 
