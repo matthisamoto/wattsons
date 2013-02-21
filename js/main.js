@@ -2,7 +2,7 @@
 {
 	var $_Window,$_Container,$_Slide,$_AnimationDuration,
 	$_AnimationEasing,$_AnimationStatus,$_CurrentSlide ,
-	$_Tab,$_Toolbar,$_ArrowLeft,$_ArrowRight;
+	$_Tab,$_Toolbar,$_ArrowLeft,$_ArrowRight,$_SlideHeadings;
 	
 	
 	$_Window = $(window);
@@ -16,6 +16,20 @@
 	$_Toolbar = $('#toolbar');
 	$_ArrowLeft = $('#left');
 	$_ArrowRight = $('#right');
+	
+	$_SlideHeadings = [['','',''],
+										 ['what','is','the problem'],
+										 ['why','we','give a damn'],
+										 ['why','we','give a damn'],
+										 ['wattson','is','the hope'],
+										 ['wattsons','have','history'],
+										 ['wattsons','can be','compared'],
+										 ['wattsons','can be','tracked'],
+										 ['wattson','has','goals'],
+										 ['wattson','has','proof'],
+										 ['wattson','has','proof'],
+										 ['wattson','has','proof'],
+										 ['','','']];
 	
 	var slides = $_Container.children().length - 1;
 	
@@ -114,6 +128,8 @@
 		{
 			$_AnimationStatus = 'working';
 			
+			preAnimation(currSlide);
+			
 			$_Container.animate({
 				left: value + 'px'
 			}, 
@@ -122,12 +138,29 @@
 			function(e) {
 				$_AnimationStatus = 'idle';
 				$_CurrentSlide = currSlide;
+				
 			});
 		}
 		
 		if( $_Toolbar.hasClass('open') ) toggleToolbar(null);
 	}
 	
+	var preAnimation = function(slide)
+	{
+		if(slide !== 0 && slide !== slides)
+		{
+			$('#title').removeClass('inactive');
+			
+			$('.beg').html( $_SlideHeadings[slide][0]);
+			$('.mid').html( $_SlideHeadings[slide][1]);
+			$('.end').html( $_SlideHeadings[slide][2]);
+		}
+		else
+		{
+			$('#title').addClass('inactive');
+		}
+	}
+		
 	
 	/*
 	 * Toolbar

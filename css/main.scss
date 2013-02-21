@@ -1,0 +1,535 @@
+@import 'normalize';
+@import 'bourbon';
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+html, body { 
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	color: #333;
+	font-family: Helvetica, Arial, sans-serif;
+}
+h1, h2, h3, h4 {
+	line-height: 1;
+	margin: 0;
+	padding: 0;	
+	color: rgba(0,0,0,0.6);
+	font-family: 'Signika', Helvetica, Arial, sans-serif;
+	text-rendering: optimizeLegibility;
+}
+h1 { 
+	/* font-size: 2.5em; */ /* 32px */	
+	font-weight: 600;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-family: 'Cabin Condensed', Helvetica, Arial, sans-serif;
+	margin-bottom: 1em;
+}
+h2 {
+	/* font-size: 3.125em; */ /* 50px */
+	font-weight: 300;
+}
+h3 {
+	/* font-size: 2.5em; */ /* 40px */
+	margin-bottom: .5em;
+	font-weight: 400;
+}
+h4 {
+	font-size: 1.5em; /* 24px */
+	font-weight: 400;
+	color: #fff;
+	letter-spacing: 0.05em;
+}
+p { 
+	margin: 0 0 20px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+strong { font-weight: 600; }
+ul { margin: 0; padding: 0; list-style: none; }
+li { margin: 0; }
+
+img { 
+	max-width: 100%;
+	&.wattson {
+		max-width: 60%;
+	}
+	&.proof {
+		margin-left: -2.5%;
+	} 
+}
+
+/* Overlaid UI */
+
+#title {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	z-index: 4;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 0.25s;
+	overflow: hidden;
+	&.inactive {
+		opacity: 0;
+	}
+	* {
+		float: left;
+		color: #fff;
+		line-height: 60px;
+		margin-right: 9px;
+		vertical-align: middle;
+		font-size: 2em;
+		font-family: 'Signika Negative', Helvetica, Arial, sans-serif;
+		font-weight: 300;
+		text-rendering: optimizeLegibility;
+	}
+	.beg {
+		font-weight: 600;
+	}
+	.mid {
+		opacity: 0.6;
+	}
+	.end {
+		
+	}
+}
+
+.navigation {
+	position: absolute;
+	width: 100px;
+	height: 100%;
+	background: url(../img/navigation-icon.png) -9999px center no-repeat;
+	cursor: pointer;
+	opacity: 0;
+	z-index: 4;	
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 0.25s;
+	-moz-transition-property: opacity;
+	-moz-transition-duration: 0.25s;
+	-o-transition-property: opacity;
+	-o-transition-duration: 0.25s;
+	-ms-transition-property: opacity;
+	-ms-transition-duration: 0.25s;
+}
+#left {
+	left: 0;
+	background-position: left center;
+	&:hover {	opacity: .3; }
+}
+#right {
+	right: 0;
+	background-position: right center;
+	&:hover {	opacity: .3; }
+}
+.touch {
+	.navigation {
+		display: none;
+	}
+}
+
+#hashtag {
+	position: absolute;
+	bottom: 0;
+	padding: 30px;
+	z-index: 3;
+}
+
+#toolbar {
+	width: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	top: 0;
+	z-index: 5;
+	color: #fff;
+	font-size: 0.875em;
+	#tab {
+		position: inherit;
+		height: 30px;
+		line-height: 30px;
+		border-radius: 0 0 8px 8px;
+		background-color: rgba(0,0,0,0.6);
+		bottom: -30px;
+		right: 10px;
+		padding: 0 10px;
+		opacity: 0.5;
+		cursor: pointer;
+		-webkit-transition-property: opacity;
+		-webkit-transition-duration: 0.25s;
+		-moz-transition-property: opacity;
+		-moz-transition-duration: 0.25s;
+		-o-transition-property: opacity;
+		-o-transition-duration: 0.25s;
+		-ms-transition-property: opacity;
+		-ms-transition-duration: 0.25s;
+		.arrow {
+			background: url(../img/arrow-icon.png) -16px 0 no-repeat;
+			width: 16px;
+			height: 16px;
+			display: block;
+			float: left;
+			margin: 7px 0;
+		}
+		.label {
+			float: left;
+			margin-right: 10px;
+		}
+		&:hover {
+			opacity: 1;
+		}
+		&.open {
+			#tab {
+				opacity: 1;
+				.arrow { 
+					background-position: 0 0;
+				}
+			}
+		}
+	}
+	.instructions {
+		padding: 20px 30px;
+		.key {
+			background-color: #eee;
+			background-color: rgba(255,255,255,0.6);
+			color: #333;
+			border-radius: 4px;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			display: inline-block;
+			margin: 0 10px;
+		}
+	}
+}
+
+/* Slides */
+
+#container {
+	width: 99999px;
+	height: 100%;
+	position: relative;
+}
+.slide {
+	width: 960px;
+	height: 100%;
+	float: left;
+	text-align: center;
+	position: relative;
+	.content {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 30px;
+		text-align: left;
+		position: relative;
+	}
+}
+.red { background-color: #df4931; }
+.yellow { background-color: #ecb937; }
+.green { background-color: #1fc370; }
+.blue { background-color: #009fdb; }
+.authors,
+.thanks {
+	margin-left: 140px;
+}
+.giant-overlay {
+	position: absolute;
+	background-color: rgba(223,73,49,0.6);
+	top: -15%;
+	left: 2%;
+	width: 100%;
+	height: auto;
+	h1 {
+		font-size: 21.875em; /* 350px */
+		margin-bottom: -.15em;
+		letter-spacing: 0;
+	}
+}
+.no-margin {
+	margin-bottom: 0;
+}
+#slide-1 .content { height: 433px; }
+#slide-13 .content { height: 350px; }
+#slide-1 .content,
+#slide-13 .content {
+	margin-top: 30%;
+}
+
+
+
+/*
+a, a * { color: #0054ff; font-size: 14px; text-decoration: none; }
+hr { border: 1px solid #e5e5e5; border-bottom: none; }
+
+label { display: block; line-height: 1.8em; color: #eee; text-align: center; font-family: 'Arimo', Helvetica, Arial, sans-serif; text-transform: uppercase; }
+input[type=text], input[type=submit] { width: 400px; height: 40px; display: block; border: none; border-radius: 8px; }
+input[type=text] {
+	padding: 4px 7px;
+	box-shadow: inset 0px 3px 6px rgba(0,0,0,0.5);
+	outline: none;
+	text-align: center;
+}
+input[type=submit] {
+	margin-top: 10px;
+	padding: 6px;
+	color: #fff;
+	letter-spacing: .1em;
+	font-family: 'Arimo', Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	background: #00b164;
+	background: -moz-linear-gradient(top,  #00b164 0%, #008a42 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00b164), color-stop(100%,#008a42));
+	background: -webkit-linear-gradient(top,  #00b164 0%,#008a42 100%);
+	background: -o-linear-gradient(top,  #00b164 0%,#008a42 100%);
+	background: -ms-linear-gradient(top,  #00b164 0%,#008a42 100%);
+	background: linear-gradient(to bottom,  #00b164 0%,#008a42 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b164', endColorstr='#008a42',GradientType=0 );
+	box-shadow: 0 1px 0 #006c34, 0 2px 0 #006c34, 0 3px 0 #006c34, 0 4px 0 #006c34, 0 7px 6px rgba(0,0,0,0.5);
+}
+input[type=submit]:active {
+	margin-top: 13px;
+	margin-bottom: -3px;
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.5);
+}
+*/
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (max-width: 960px) {
+	
+	/*
+	h1 { 
+		font-size: 1.75em;
+		font-weight: 600;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		font-family: 'Cabin Condensed', Helvetica, Arial, sans-serif;
+		margin-bottom: 1em;
+	}
+	h2 {
+		font-size: 2.75em;
+		font-weight: 300;
+	}
+	h3 {
+		font-size: 2.125em;
+		margin-bottom: .5em;
+		font-weight: 400;
+	}
+	*/
+	
+	h4 {
+		font-size: 1em;
+	}
+	#toolbar {
+		font-size: 0.75em;
+	}
+	#hashtag {
+		padding: 20px;
+	}
+	.authors,
+	.thanks {
+		margin-left: 14.5%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+	h4 {
+		font-size: 0.625em;
+	}
+	
+	#hashtag {
+		padding: 10px;
+	}
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
